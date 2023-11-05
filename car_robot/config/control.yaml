@@ -18,22 +18,26 @@ controller_manager:
 position_controller:
     ros__parameters:
         joints:
-            - right-wheel-2
+        - fl-axle
+        - fr-axle
         interface_name: position
         command_interfaces:
-            - position
+        - position
         state_interfaces:
-            - position
-            - velocity
+        - position
+        - velocity
 
 
 velocity_controller:
     ros__parameters:
         joints:
-            - left-wheel-1
+        - rr-wheel
+        - rl-wheel
+        #- fr-wheel
+        #- fl-wheel
         interface_name: velocity
         command_interfaces:
-            - velocity
+        - velocity
         state_interfaces:
-            - position
-            - velocity
+        - position
+        - velocity

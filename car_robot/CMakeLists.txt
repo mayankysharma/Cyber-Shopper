@@ -16,6 +16,8 @@ install(DIRECTORY
     launch
     worlds
     config
+    competition
+    scripts
     DESTINATION share/${PROJECT_NAME}/
     )
 install(
@@ -27,6 +29,12 @@ install(
     launch/robot_description_publisher.py
     DESTINATION lib/${PROJECT_NAME}
     )
+install(
+  PROGRAMS
+  launch/robot_description_publisher.py
+  scripts/teleop.py
+  DESTINATION lib/${PROJECT_NAME}
+  )
 find_package(robot_state_publisher REQUIRED)
 find_package(xacro REQUIRED)
 find_package(tf2 REQUIRED)

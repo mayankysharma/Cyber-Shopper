@@ -4,25 +4,39 @@
      For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
 <robot
   name="car_robot" xmlns:xacro="http://ros.org/wiki/xacro">
-  <!-- <ros2_control name="GazeboSystem" type="system">
- <hardware>
-     <plugin>gazebo_ros2_control/GazeboSystem</plugin>
- </hardware> -->
+  <xacro:macro name="body_color">
+    <visual>
+    <material>
+        <ambient>0.8 0.558823529411765 0.1 1</ambient>
+        <diffuse>0.8 0.558823529411765 0.1 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+        <emissive>0 0 0 0</emissive>
+    </material>
+    </visual>
+</xacro:macro>
+<gazebo reference="base_link">
+    <xacro:body_color />
+</gazebo>
+
+  # Add this before base link
+<link name="dummy_link"></link>
+
+
   <link
     name="base_link">
     <inertial>
       <origin
-        xyz="0.0102934841398985 -0.00376231068740884 5.43044143984843E-17"
+        xyz="-0.00677096096599195 -7.40324226081856E-09 0.306370957352742"
         rpy="0 0 0" />
       <mass
-        value="25.6200869444948" />
+        value="40.1297473551325" />
       <inertia
-        ixx="0.571525055680453"
-        ixy="0.0234910482197784"
-        ixz="-1.97435940527347E-16"
-        iyy="2.52764338096436"
-        iyz="-2.99012692149574E-17"
-        izz="1.99201719065782" />
+        ixx="1.26922453974044"
+        ixy="1.04912166627978E-07"
+        ixz="-0.0347492884684778"
+        iyy="3.34453299992272"
+        iyz="1.64404574479948E-08"
+        izz="4.11157029873108" />
     </inertial>
     <visual>
       <origin
@@ -35,7 +49,7 @@
       <material
         name="">
         <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
       </material>
     </visual>
     <collision>
@@ -48,21 +62,27 @@
       </geometry>
     </collision>
   </link>
+  # Add this after base link
+<joint name="dummy_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0" />
+    <parent link="dummy_link"/>
+    <child link="base_link"/>
+</joint>
   <link
-    name="left-hinge">
+    name="front-left-hinge">
     <inertial>
       <origin
-        xyz="-2.77555756156289E-17 3.33066907387547E-16 -0.0846241805160345"
+        xyz="3.88578058618805E-16 -6.10622663543836E-16 -0.118799628145585"
         rpy="0 0 0" />
       <mass
-        value="0.62854541390723" />
+        value="0.633612488698204" />
       <inertia
-        ixx="0.00235146189900645"
-        ixy="-2.71050543121376E-19"
-        ixz="3.28576308435801E-19"
-        iyy="0.00410804378839769"
-        iyz="5.90295081884936E-18"
-        izz="0.00202588553122934" />
+        ixx="0.00419900401400481"
+        ixy="0.000173645794203951"
+        ixz="-1.07917330807736E-18"
+        iyy="0.00247709562888137"
+        iyz="-1.52690795674631E-18"
+        izz="0.00202629416547586" />
     </inertial>
     <visual>
       <origin
@@ -70,12 +90,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://car_robot/meshes/left-hinge.STL" />
+          filename="package://car_robot/meshes/front-left-hinge.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+          rgba="1 1 0 1" />
       </material>
     </visual>
     <collision>
@@ -84,23 +104,22 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://car_robot/meshes/left-hinge.STL" />
+          filename="package://car_robot/meshes/front-left-hinge.STL" />
       </geometry>
     </collision>
   </link>
   <joint
-    name="l-hinge"
+    name="fl-hinge"
     type="revolute">
-
     <origin
-      xyz="-0.254 -0.1397 0"
-      rpy="0 0 1.4474" />
+      xyz="0.254 0.1397 0.3021"
+      rpy="0 0 -3.1416" />
     <parent
       link="base_link" />
     <child
-      link="left-hinge" />
+      link="front-left-hinge" />
     <axis
-      xyz="0 0 1" />
+      xyz="0 0 -1" />
     <limit
       lower="0"
       upper="0"
@@ -108,20 +127,20 @@
       velocity="0" />
   </joint>
   <link
-    name="left-wheel-1">
+    name="front-left-wheeel">
     <inertial>
       <origin
-        xyz="0.0112195563742732 0.164718340068022 0"
+        xyz="-0.00757015271891448 2.77555756156289E-17 -0.0758230359970678"
         rpy="0 0 0" />
       <mass
         value="2.43249992415545" />
       <inertia
-        ixx="0.00755250482076537"
-        ixy="-2.5410988417629E-20"
-        ixz="-5.52943107967607E-18"
+        ixx="0.00760381168766053"
+        ixy="-8.24720643585744E-19"
+        ixz="0.00051389219741489"
         iyy="0.00755250482076537"
-        iyz="2.23616698075135E-18"
-        izz="0.0127509821649285" />
+        iyz="-3.62054828260286E-19"
+        izz="0.0126996752980334" />
     </inertial>
     <visual>
       <origin
@@ -129,541 +148,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://car_robot/meshes/left-wheel-1.STL" />
-      </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://car_robot/meshes/left-wheel-1.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint
-    name="l-wheel-1"
-    type="revolute">
-    <origin
-      xyz="0 0 0"
-      rpy="-1.5708 0.068009 -1.5708" />
-    <parent
-      link="left-hinge" />
-    <child
-      link="left-wheel-1" />
-    <axis
-      xyz="0 0 1" />
-    <limit
-      lower="0"
-      upper="0"
-      effort="0"
-      velocity="0" />
-      <!-- <command_interface name="position">
-         <param name="min">-3.14</param>
-         <param name="max">3.14</param>
-     </command_interface>
-     <state_interface name="position"/>
-     <state_interface name="velocity"/> -->
-  </joint>
-  <link
-    name="left-pin-1">
-    <inertial>
-      <origin
-        xyz="0.0112195563742731 0.164718340068022 -5.55111512312578E-17"
-        rpy="0 0 0" />
-      <mass
-        value="0.0772222198144586" />
-      <inertia
-        ixx="0.000152575854964957"
-        ixy="-1.58818677610181E-22"
-        ixz="1.54001177722672E-19"
-        iyy="0.000152575854964957"
-        iyz="-6.97445605280211E-20"
-        izz="6.22758591693702E-06" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://car_robot/meshes/left-pin-1.STL" />
-      </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://car_robot/meshes/left-pin-1.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint
-    name="l-pin-1"
-    type="revolute">
-    <origin
-      xyz="0 0 0"
-      rpy="-1.5708 0.068009 -1.5708" />
-    <parent
-      link="left-hinge" />
-    <child
-      link="left-pin-1" />
-    <axis
-      xyz="0 0 1" />
-    <limit
-      lower="0"
-      upper="0"
-      effort="0"
-      velocity="0" />
-  </joint>
-  <link
-    name="right-hinge">
-    <inertial>
-      <origin
-        xyz="0 -1.66533453693773E-16 -0.0846241805160344"
-        rpy="0 0 0" />
-      <mass
-        value="0.628545413907229" />
-      <inertia
-        ixx="0.00235146189900645"
-        ixy="-1.28749007982654E-18"
-        ixz="-6.95439178528409E-19"
-        iyy="0.00410804378839768"
-        iyz="-6.19049120329323E-18"
-        izz="0.00202588553122934" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://car_robot/meshes/right-hinge.STL" />
-      </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://car_robot/meshes/right-hinge.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint
-    name="r-hinge"
-    type="revolute">
-    <origin
-      xyz="-0.254 0.1397 0"
-      rpy="0 0 1.6119" />
-    <parent
-      link="base_link" />
-    <child
-      link="right-hinge" />
-    <axis
-      xyz="0 0 1" />
-    <limit
-      lower="0"
-      upper="0"
-      effort="0"
-      velocity="0" />
-  </joint>
-  <link
-    name="right-wheel-1">
-    <inertial>
-      <origin
-        xyz="-0.0687928539986461 -0.150085153292126 -1.11022302462516E-16"
-        rpy="0 0 0" />
-      <mass
-        value="2.43249992415545" />
-      <inertia
-        ixx="0.00755250482076538"
-        ixy="-4.34527901941456E-19"
-        ixz="6.04442711160669E-18"
-        iyy="0.00755250482076537"
-        iyz="-4.2554935270056E-18"
-        izz="0.0127509821649286" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://car_robot/meshes/right-wheel-1.STL" />
-      </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://car_robot/meshes/right-wheel-1.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint
-    name="r-wheel-1"
-    type="revolute">
-    <origin
-      xyz="0 0 0"
-      rpy="1.5708 -0.42978 1.5708" />
-    <parent
-      link="right-hinge" />
-    <child
-      link="right-wheel-1" />
-    <axis
-      xyz="0 0 1" />
-    <limit
-      lower="0"
-      upper="0"
-      effort="0"
-      velocity="0" />
-  </joint>
-  <link
-    name="right-pin-1">
-    <inertial>
-      <origin
-        xyz="0.123160223286013 -0.109952577960407 -2.77555756156289E-17"
-        rpy="0 0 0" />
-      <mass
-        value="0.0772222198144586" />
-      <inertia
-        ixx="0.000152575854964957"
-        ixy="-7.04096137405137E-21"
-        ixz="-4.19718060254307E-19"
-        iyy="0.000152575854964957"
-        iyz="-5.29938222515772E-19"
-        izz="6.22758591693701E-06" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://car_robot/meshes/right-pin-1.STL" />
-      </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://car_robot/meshes/right-pin-1.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint
-    name="r-pin-1"
-    type="revolute">
-    <origin
-      xyz="0 0 0"
-      rpy="1.5708 0.842 -1.5708" />
-    <parent
-      link="right-hinge" />
-    <child
-      link="right-pin-1" />
-    <axis
-      xyz="0 0 1" />
-    <limit
-      lower="0"
-      upper="0"
-      effort="0"
-      velocity="0" />
-  </joint>
-  <link
-    name="left-wheel-2">
-    <inertial>
-      <origin
-        xyz="-4.16333634234434E-17 -5.55111512312578E-17 -0.0381000000000001"
-        rpy="0 0 0" />
-      <mass
-        value="2.43249992415545" />
-      <inertia
-        ixx="0.00755250482076537"
-        ixy="0"
-        ixz="8.36147349627841E-19"
-        iyy="0.00755250482076537"
-        iyz="-2.55416354725182E-19"
-        izz="0.0127509821649285" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://car_robot/meshes/left-wheel-2.STL" />
-      </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://car_robot/meshes/left-wheel-2.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint
-    name="l-wheel-2"
-    type="revolute">
-    <origin
-      xyz="0.254 -0.1016 -0.1651"
-      rpy="1.5708 1.3125 -3.1416" />
-    <parent
-      link="base_link" />
-    <child
-      link="left-wheel-2" />
-    <axis
-      xyz="0 0 1" />
-    <limit
-      lower="0"
-      upper="0"
-      effort="0"
-      velocity="0" />
-  </joint>
-  <link
-    name="left-pin-2">
-    <inertial>
-      <origin
-        xyz="1.11022302462516E-16 0 -0.0762"
-        rpy="0 0 0" />
-      <mass
-        value="0.0772222198144586" />
-      <inertia
-        ixx="0.000152575854964957"
-        ixy="0"
-        ixz="-2.17479181881241E-20"
-        iyy="0.000152575854964957"
-        iyz="-1.85885472093089E-20"
-        izz="6.22758591693701E-06" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://car_robot/meshes/left-pin-2.STL" />
-      </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://car_robot/meshes/left-pin-2.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint
-    name="l-pin-2"
-    type="revolute">
-    <origin
-      xyz="0.254 -0.0635 -0.1651"
-      rpy="-1.5708 1.1663 0" />
-    <parent
-      link="base_link" />
-    <child
-      link="left-pin-2" />
-    <axis
-      xyz="0 0 1" />
-    <limit
-      lower="0"
-      upper="0"
-      effort="0"
-      velocity="0" />
-  </joint>
-  <link
-    name="right-wheel-2">
-    <inertial>
-      <origin
-        xyz="5.55111512312578E-17 -8.32667268468867E-17 -0.0381000000000001"
-        rpy="0 0 0" />
-      <mass
-        value="2.43249992415545" />
-      <inertia
-        ixx="0.00755250482076537"
-        ixy="-5.42101086242752E-20"
-        ixz="2.87863309122979E-19"
-        iyy="0.00755250482076537"
-        iyz="1.92777761134077E-18"
-        izz="0.0127509821649285" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://car_robot/meshes/right-wheel-2.STL" />
-      </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://car_robot/meshes/right-wheel-2.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint
-    name="r-wheel-2"
-    type="revolute">
-    <origin
-      xyz="0.254 0.1016 -0.1651"
-      rpy="1.5708 0.028703 0" />
-    <parent
-      link="base_link" />
-    <child
-      link="right-wheel-2" />
-    <axis
-      xyz="0 0 1" />
-    <limit
-      lower="0"
-      upper="0"
-      effort="0"
-      velocity="0" />
-           <command_interface name="velocity">
-         <param name="min">-1000.0</param>
-         <param name="max">1000.0</param>
-     </command_interface>
-     <state_interface name="position"/>
-     <state_interface name="velocity"/>
-  </joint>
-  <link
-    name="right-pin-2">
-    <inertial>
-      <origin
-        xyz="-5.55111512312578E-17 1.38777878078145E-17 -0.0762"
-        rpy="0 0 0" />
-      <mass
-        value="0.0772222198144586" />
-      <inertia
-        ixx="0.000152575854964957"
-        ixy="1.01643953670516E-20"
-        ixz="-6.4327467261112E-21"
-        iyy="0.000152575854964957"
-        iyz="2.74060603491474E-20"
-        izz="6.22758591693701E-06" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://car_robot/meshes/right-pin-2.STL" />
-      </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://car_robot/meshes/right-pin-2.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint
-    name="r-pin-2"
-    type="revolute">
-    <origin
-      xyz="0.254 0.0635 -0.1651"
-      rpy="-1.5708 -0.32345 3.1416" />
-    <parent
-      link="base_link" />
-    <child
-      link="right-pin-2" />
-    <axis
-      xyz="0 0 1" />
-    <limit
-      lower="0"
-      upper="0"
-      effort="0"
-      velocity="0" />
-  </joint>
-  <link
-    name="lidar">
-    <inertial>
-      <origin
-        xyz="1.11022302462516E-16 0.0254 -6.93889390390723E-18"
-        rpy="0 0 0" />
-      <mass
-        value="0.0514814798763058" />
-      <inertia
-        ixx="4.63609173816422E-05"
-        ixy="4.30873479248193E-21"
-        ixz="0"
-        iyy="4.15172394462468E-06"
-        iyz="1.95859804621225E-20"
-        izz="4.63609173816422E-05" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://car_robot/meshes/lidar.STL" />
+          filename="package://car_robot/meshes/front-left-wheeel.STL" />
       </geometry>
       <material
         name="">
@@ -677,27 +162,669 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://car_robot/meshes/lidar.STL" />
+          filename="package://car_robot/meshes/front-left-wheeel.STL" />
       </geometry>
     </collision>
   </link>
   <joint
-    name="ld"
-    type="fixed">
+    name="fl-wheel"
+    type="revolute">
     <origin
-      xyz="-0.42796 0 0"
-      rpy="1.5708 0 -0.13611" />
+      xyz="0.0075702 -0.075823 -0.2005"
+      rpy="1.5708 0 0" />
+    <parent
+      link="front-left-hinge" />
+    <child
+      link="front-left-wheeel" />
+    <axis
+      xyz="0.099346 0 0.99505" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="front-left-axle">
+    <inertial>
+      <origin
+        xyz="-0.00757015271891331 -2.77555756156289E-17 -0.0758230359970657"
+        rpy="0 0 0" />
+      <mass
+        value="0.0772222198144586" />
+      <inertia
+        ixx="0.000151131456795402"
+        ixy="-2.82674264757069E-21"
+        ixz="-1.44671657852651E-05"
+        iyy="0.000152575854964957"
+        iyz="-2.83127986289767E-20"
+        izz="7.67198408649241E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://car_robot/meshes/front-left-axle.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://car_robot/meshes/front-left-axle.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="fl-axle"
+    type="revolute">
+    <origin
+      xyz="0.0075702 -0.075823 -0.2005"
+      rpy="1.5708 0 0" />
+    <parent
+      link="front-left-hinge" />
+    <child
+      link="front-left-axle" />
+    <axis
+      xyz="0.099346 0 0.99505" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="front-right-hinge">
+    <inertial>
+      <origin
+        xyz="-5.55111512312578E-17 -8.32667268468867E-17 -0.118799628145586"
+        rpy="0 0 0" />
+      <mass
+        value="0.633612488698204" />
+      <inertia
+        ixx="0.00392482649211829"
+        ixy="0.000653519794869028"
+        ixz="-1.24551730795087E-19"
+        iyy="0.0027512731507679"
+        iyz="-4.19591111294197E-19"
+        izz="0.00202629416547586" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://car_robot/meshes/front-right-hinge.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://car_robot/meshes/front-right-hinge.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="fr-hinge"
+    type="revolute">
+    <origin
+      xyz="0.254 -0.1397 0.3021"
+      rpy="0 0 -3.1416" />
     <parent
       link="base_link" />
     <child
-      link="lidar" />
+      link="front-right-hinge" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="front-right-wheel">
+    <inertial>
+      <origin
+        xyz="-0.031042070676579 8.32667268468867E-17 -0.0695904436550727"
+        rpy="0 0 0" />
+      <mass
+        value="2.43249992415545" />
+      <inertia
+        ixx="0.0084152202786371"
+        ixy="-2.50693797234352E-18"
+        ixz="0.00193404467398112"
+        iyy="0.00755250482076537"
+        iyz="-3.20124118023232E-18"
+        izz="0.0118882667070568" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://car_robot/meshes/front-right-wheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://car_robot/meshes/front-right-wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="fr-wheel"
+    type="revolute">
+    <origin
+      xyz="-0.031042 0.06959 -0.2005"
+      rpy="1.5708 0 3.1416" />
+    <parent
+      link="front-right-hinge" />
+    <child
+      link="front-right-wheel" />
+    <axis
+      xyz="-0.40738 0 -0.91326" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="front-right-axle">
+    <inertial>
+      <origin
+        xyz="-0.0310420706765801 8.32667268468867E-17 -0.0695904436550753"
+        rpy="0 0 0" />
+      <mass
+        value="0.0772222198144586" />
+      <inertia
+        ixx="0.000128288567441763"
+        ixy="3.72486511718043E-20"
+        ixz="-5.44474990578691E-05"
+        iyy="0.000152575854964957"
+        iyz="8.14822018357058E-20"
+        izz="3.05148734401304E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://car_robot/meshes/front-right-axle.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://car_robot/meshes/front-right-axle.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="fr-axle"
+    type="revolute">
+    <origin
+      xyz="-0.031042 0.06959 -0.2005"
+      rpy="1.5708 0 3.1416" />
+    <parent
+      link="front-right-hinge" />
+    <child
+      link="front-right-axle" />
+    <axis
+      xyz="-0.40738 0 -0.91326" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="rear-left-wheel">
+    <inertial>
+      <origin
+        xyz="-2.22044604925031E-16 -2.77555756156289E-17 -0.0762"
+        rpy="0 0 0" />
+      <mass
+        value="2.43249992415545" />
+      <inertia
+        ixx="0.00755250482076536"
+        ixy="6.17126500150209E-19"
+        ixz="7.63769608539205E-20"
+        iyy="0.00755250482076537"
+        iyz="2.88296133927474E-19"
+        izz="0.0127509821649285" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://car_robot/meshes/rear-left-wheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://car_robot/meshes/rear-left-wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rl-wheel"
+    type="revolute">
+    <origin
+      xyz="-0.254 0.2159 0.1016"
+      rpy="1.5708 0 -3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="rear-left-wheel" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="rear-left-axle">
+    <inertial>
+      <origin
+        xyz="0 0 -0.0762"
+        rpy="0 0 0" />
+      <mass
+        value="0.0772222198144586" />
+      <inertia
+        ixx="0.000152575854964957"
+        ixy="6.89140711930171E-22"
+        ixz="-5.62078824877413E-21"
+        iyy="0.000152575854964957"
+        iyz="-2.78728394910108E-20"
+        izz="6.22758591693701E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://car_robot/meshes/rear-left-axle.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://car_robot/meshes/rear-left-axle.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rl-axle"
+    type="revolute">
+    <origin
+      xyz="-0.254 0.2159 0.1016"
+      rpy="1.5708 0 -3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="rear-left-axle" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="rear-right-wheel">
+    <inertial>
+      <origin
+        xyz="-5.55111512312578E-17 2.77555756156289E-17 -0.0762"
+        rpy="0 0 0" />
+      <mass
+        value="2.43249992415545" />
+      <inertia
+        ixx="0.00755250482076537"
+        ixy="5.66507546524498E-20"
+        ixz="3.1159769861265E-19"
+        iyy="0.00755250482076537"
+        iyz="5.69002767599304E-19"
+        izz="0.0127509821649285" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://car_robot/meshes/rear-right-wheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://car_robot/meshes/rear-right-wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rr-wheel"
+    type="revolute">
+    <origin
+      xyz="-0.254 -0.2159 0.1016"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="rear-right-wheel" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="rear-right-axle">
+    <inertial>
+      <origin
+        xyz="0 2.77555756156289E-17 -0.0762"
+        rpy="0 0 0" />
+      <mass
+        value="0.0772222198144586" />
+      <inertia
+        ixx="0.000152575854964957"
+        ixy="-5.62062593584521E-37"
+        ixz="-5.0774755597234E-21"
+        iyy="0.000152575854964957"
+        iyz="-1.62003512769673E-20"
+        izz="6.22758591693702E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://car_robot/meshes/rear-right-axle.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://car_robot/meshes/rear-right-axle.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rr-axle"
+    type="revolute">
+    <origin
+      xyz="-0.254 -0.2159 0.1016"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="rear-right-axle" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="Lidar">
+    <inertial>
+      <origin
+        xyz="0 -1.02751096627556E-17 -0.08905"
+        rpy="0 0 0" />
+      <mass
+        value="0.0902446020272643" />
+      <inertia
+        ixx="0.000242182519707747"
+        ixy="9.5944127796284E-22"
+        ixz="-6.99487317772809E-21"
+        iyy="0.000242182519707747"
+        iyz="-2.72604477775199E-20"
+        izz="7.27777593048873E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://car_robot/meshes/Lidar.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://car_robot/meshes/Lidar.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l-sensor"
+    type="fixed">
+    <origin
+      xyz="0.45 0 0.4194"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="Lidar" />
     <axis
       xyz="0 0 0" />
   </joint>
- <!-- </ros2_control>
- <gazebo>
+  
+ <ros2_control name="GazeboSystem" type="system">
+    <hardware>
+        <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+    </hardware>
+  # Velocity Controllers
+
+  <joint name="rr-wheel">
+      <command_interface name="velocity">
+          <param name="min">-1000.0</param>
+          <param name="max">1000.0</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+  </joint>
+
+  <joint name="rl-wheel">
+      <command_interface name="velocity">
+          <param name="min">-1000.0</param>
+          <param name="max">1000.0</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+  </joint>
+
+  <joint name="fl-wheel">
+      <command_interface name="velocity">
+          <param name="min">-1000.0</param>
+          <param name="max">1000.0</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+  </joint>
+
+  <joint name="fr-wheel">
+      <command_interface name="velocity">
+          <param name="min">-1000.0</param>
+          <param name="max">1000.0</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+  </joint>
+
+  # Position Controller
+  <joint name="fl-axle">
+      <command_interface name="position">
+          <param name="min">-3.14</param>
+          <param name="max">3.14</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+  </joint>
+
+  <joint name="fr-axle">
+      <command_interface name="position">
+          <param name="min">-3.14</param>
+          <param name="max">3.14</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+  </joint>
+
+  </ros2_control>
+
+  <gazebo>
     <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
         <parameters>$(find car_robot)/config/control.yaml</parameters>
     </plugin>
-</gazebo>  -->
+  </gazebo>
+  
+ <gazebo reference="Lidar">
+  <sensor name="lidar" type="ray">
+    <pose>0.0 0.0 0.0 0 0 0</pose>
+    <always_on>true</always_on>
+    <visualize>true</visualize>
+    <update_rate>5</update_rate>
+    <ray>
+      <scan>
+        <horizontal>
+          <samples>360</samples>
+          <resolution>1.00000</resolution>
+          <min_angle>0.000000</min_angle>
+          <max_angle>6.280000</max_angle>
+        </horizontal>
+      </scan>
+      <range>
+        <min>0.120000</min>
+        <max>3.5</max>
+        <resolution>0.015000</resolution>
+      </range>
+      <noise>
+        <type>gaussian</type>
+        <mean>0.0</mean>
+        <stddev>0.01</stddev>
+      </noise>
+    </ray>
+    <plugin name="scan" filename="libgazebo_ros_ray_sensor.so">
+      <ros>
+        <remapping>~/out:=scan</remapping>
+      </ros>
+      <output_type>sensor_msgs/LaserScan</output_type>
+      <frame_name>Lidar</frame_name>
+    </plugin>
+  </sensor>
+  </gazebo>
+  
+  <gazebo reference="base_link">
+  <gravity>true</gravity>
+  <sensor name="imu_sensor" type="imu">
+    <always_on>true</always_on>
+    <update_rate>100</update_rate>
+    <visualize>true</visualize>
+    <topic>__default_topic__</topic>
+    <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
+      <topicName>imu</topicName>
+      <bodyName>name_of_the_base_link</bodyName>
+      <updateRateHZ>10.0</updateRateHZ>
+      <gaussianNoise>0.0</gaussianNoise>
+      <xyzOffset>0 0 0</xyzOffset>
+      <rpyOffset>0 0 0</rpyOffset>
+      <frameName>base_link</frameName>
+      <initialOrientationAsReference>false</initialOrientationAsReference>
+    </plugin>
+    <pose>0 0 0 0 0 0</pose>
+  </sensor>
+</gazebo>
 </robot>
