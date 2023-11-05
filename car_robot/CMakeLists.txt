@@ -17,7 +17,7 @@ install(DIRECTORY
     worlds
     config
     competition
-    code
+    scripts
     DESTINATION share/${PROJECT_NAME}/
     )
 install(
@@ -32,7 +32,7 @@ install(
 install(
   PROGRAMS
   launch/robot_description_publisher.py
-  code/my.py
+  scripts/teleop.py
   DESTINATION lib/${PROJECT_NAME}
   )
 find_package(robot_state_publisher REQUIRED)

@@ -18,8 +18,8 @@ controller_manager:
 position_controller:
     ros__parameters:
         joints:
-        - fl-axle
-        - fr-axle
+        - fl-hinge
+        - fr-hinge
         interface_name: position
         command_interfaces:
         - position

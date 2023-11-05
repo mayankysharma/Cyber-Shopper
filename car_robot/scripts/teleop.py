@@ -11,7 +11,7 @@ import tty
 import termios
 
 # Define key codes
-LIN_VEL_STEP_SIZE = 10
+LIN_VEL_STEP_SIZE = 1
 ANG_VEL_STEP_SIZE = 0.1
 
 class KeyboardControlNode(Node):

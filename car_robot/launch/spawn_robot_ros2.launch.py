@@ -29,8 +29,12 @@ def generate_launch_description():
     #orientation = [0.0, 0.0, 0.0]
      # # Competition Launch
     # # [X, Y, Z]
-    position = [0.0, 0.0, 0.4]
-    # # [Roll, Pitch, Yaw]
+    # position = [0.0, 0.0, 0.4]
+    # # # [Roll, Pitch, Yaw]
+    # orientation = [0.0, 0.0, 0.0]
+    # [X, Y, Z]
+    position = [5.0, 5.0, 1.0]
+    # [Roll, Pitch, Yaw]
     orientation = [0.0, 0.0, 0.0]
     # Base Name or robot
     robot_base_name = "car_robot"
