@@ -17,25 +17,20 @@
 <gazebo reference="base_link">
     <xacro:body_color />
 </gazebo>
-
-  # Add this before base link
-<link name="dummy_link"></link>
-
-
   <link
     name="base_link">
     <inertial>
       <origin
-        xyz="-0.00677096096599195 -7.40324226081856E-09 0.306370957352742"
+        xyz="-0.00677096096599197 -7.40324229928916E-09 0.0650709573527417"
         rpy="0 0 0" />
       <mass
         value="40.1297473551325" />
       <inertia
         ixx="1.26922453974044"
-        ixy="1.04912166627978E-07"
+        ixy="1.04912166639753E-07"
         ixz="-0.0347492884684778"
         iyy="3.34453299992272"
-        iyz="1.64404574479948E-08"
+        iyz="1.6440457327724E-08"
         izz="4.11157029873108" />
     </inertial>
     <visual>
@@ -62,26 +57,20 @@
       </geometry>
     </collision>
   </link>
-  # Add this after base link
-<joint name="dummy_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="0 0 0" />
-    <parent link="dummy_link"/>
-    <child link="base_link"/>
-</joint>
   <link
     name="front-left-hinge">
     <inertial>
       <origin
-        xyz="3.88578058618805E-16 -6.10622663543836E-16 -0.118799628145585"
+        xyz="0 2.77555756156289E-17 -0.118799628145585"
         rpy="0 0 0" />
       <mass
         value="0.633612488698204" />
       <inertia
-        ixx="0.00419900401400481"
-        ixy="0.000173645794203951"
-        ixz="-1.07917330807736E-18"
-        iyy="0.00247709562888137"
-        iyz="-1.52690795674631E-18"
+        ixx="0.0042046227153009"
+        ixy="-0.000142990919869844"
+        ixz="-1.30495243379754E-18"
+        iyy="0.00247147692758528"
+        iyz="-6.30427138270604E-19"
         izz="0.00202629416547586" />
     </inertial>
     <visual>
@@ -110,9 +99,9 @@
   </link>
   <joint
     name="fl-hinge"
-    type="revolute">
+    type="continuous">
     <origin
-      xyz="0.254 0.1397 0.3021"
+      xyz="0.254 0.1397 0.0608"
       rpy="0 0 -3.1416" />
     <parent
       link="base_link" />
@@ -121,8 +110,8 @@
     <axis
       xyz="0 0 -1" />
     <limit
-      lower="0"
-      upper="0"
+      lower="-0.69"
+      upper="0.69"
       effort="0"
       velocity="0" />
   </joint>
@@ -130,17 +119,17 @@
     name="front-left-wheeel">
     <inertial>
       <origin
-        xyz="-0.00757015271891448 2.77555756156289E-17 -0.0758230359970678"
+        xyz="0.00622369727134658 -2.77555756156289E-16 -0.0759454119237928"
         rpy="0 0 0" />
       <mass
         value="2.43249992415545" />
       <inertia
-        ixx="0.00760381168766053"
-        ixy="-8.24720643585744E-19"
-        ixz="0.00051389219741489"
+        ixx="0.00758718354662836"
+        ixy="-1.26731196831282E-18"
+        ixz="-0.000423171308923178"
         iyy="0.00755250482076537"
-        iyz="-3.62054828260286E-19"
-        izz="0.0126996752980334" />
+        iyz="-1.68232117058127E-19"
+        izz="0.0127163034390655" />
     </inertial>
     <visual>
       <origin
@@ -168,16 +157,16 @@
   </link>
   <joint
     name="fl-wheel"
-    type="revolute">
+    type="continuous">
     <origin
-      xyz="0.0075702 -0.075823 -0.2005"
-      rpy="1.5708 0 0" />
+      xyz="-0.00622369727134681 -0.0759454119237924 -0.2005"
+      rpy="1.5707963267949 0 0" />
     <parent
       link="front-left-hinge" />
     <child
       link="front-left-wheeel" />
     <axis
-      xyz="0.099346 0 0.99505" />
+      xyz="-0.0816758172092811 0 0.996658949131144" />
     <limit
       lower="0"
       upper="0"
@@ -188,17 +177,17 @@
     name="front-left-axle">
     <inertial>
       <origin
-        xyz="-0.00757015271891331 -2.77555756156289E-17 -0.0758230359970657"
+        xyz="0.00622369727134719 -5.55111512312578E-17 -0.0759454119237932"
         rpy="0 0 0" />
       <mass
         value="0.0772222198144586" />
       <inertia
-        ixx="0.000151131456795402"
-        ixy="-2.82674264757069E-21"
-        ixz="-1.44671657852651E-05"
+        ixx="0.000151599574572288"
+        ixy="4.39662991317288E-21"
+        ixz="1.19131785081697E-05"
         iyy="0.000152575854964957"
-        iyz="-2.83127986289767E-20"
-        izz="7.67198408649241E-06" />
+        iyz="-5.36504034940161E-20"
+        izz="7.203866309606E-06" />
     </inertial>
     <visual>
       <origin
@@ -226,16 +215,16 @@
   </link>
   <joint
     name="fl-axle"
-    type="revolute">
+    type="fixed">
     <origin
-      xyz="0.0075702 -0.075823 -0.2005"
-      rpy="1.5708 0 0" />
+      xyz="-0.00622369727134681 -0.0759454119237924 -0.2005"
+      rpy="1.5707963267949 0 0" />
     <parent
       link="front-left-hinge" />
     <child
       link="front-left-axle" />
     <axis
-      xyz="0.099346 0 0.99505" />
+      xyz="-0.0816758172092811 0 0.996658949131144" />
     <limit
       lower="0"
       upper="0"
@@ -246,16 +235,16 @@
     name="front-right-hinge">
     <inertial>
       <origin
-        xyz="-5.55111512312578E-17 -8.32667268468867E-17 -0.118799628145586"
+        xyz="0 -1.38777878078145E-16 -0.118799628145585"
         rpy="0 0 0" />
       <mass
-        value="0.633612488698204" />
+        value="0.633612488698205" />
       <inertia
-        ixx="0.00392482649211829"
-        ixy="0.000653519794869028"
-        ixz="-1.24551730795087E-19"
-        iyy="0.0027512731507679"
-        iyz="-4.19591111294197E-19"
+        ixx="0.00421634076613872"
+        ixy="1.97169687775791E-19"
+        ixz="3.34139793073233E-19"
+        iyy="0.00245975887674748"
+        iyz="-4.58614596323022E-19"
         izz="0.00202629416547586" />
     </inertial>
     <visual>
@@ -284,9 +273,9 @@
   </link>
   <joint
     name="fr-hinge"
-    type="revolute">
+    type="continuous">
     <origin
-      xyz="0.254 -0.1397 0.3021"
+      xyz="0.254 -0.1397 0.0608"
       rpy="0 0 -3.1416" />
     <parent
       link="base_link" />
@@ -295,8 +284,8 @@
     <axis
       xyz="0 0 -1" />
     <limit
-      lower="0"
-      upper="0"
+      lower="-0.69"
+      upper="0.69"
       effort="0"
       velocity="0" />
   </joint>
@@ -304,17 +293,17 @@
     name="front-right-wheel">
     <inertial>
       <origin
-        xyz="-0.031042070676579 8.32667268468867E-17 -0.0695904436550727"
+        xyz="0 2.77555756156289E-17 -0.0762"
         rpy="0 0 0" />
       <mass
         value="2.43249992415545" />
       <inertia
-        ixx="0.0084152202786371"
-        ixy="-2.50693797234352E-18"
-        ixz="0.00193404467398112"
+        ixx="0.00755250482076537"
+        ixy="-1.41203303983048E-19"
+        ixz="1.30750629116003E-18"
         iyy="0.00755250482076537"
-        iyz="-3.20124118023232E-18"
-        izz="0.0118882667070568" />
+        iyz="-3.76415922197689E-18"
+        izz="0.0127509821649285" />
     </inertial>
     <visual>
       <origin
@@ -342,16 +331,16 @@
   </link>
   <joint
     name="fr-wheel"
-    type="revolute">
+    type="continuous">
     <origin
-      xyz="-0.031042 0.06959 -0.2005"
-      rpy="1.5708 0 3.1416" />
+      xyz="0 0.0761999999999998 -0.2005"
+      rpy="1.5707963267949 0 3.14159265358979" />
     <parent
       link="front-right-hinge" />
     <child
       link="front-right-wheel" />
     <axis
-      xyz="-0.40738 0 -0.91326" />
+      xyz="0 0 -1" />
     <limit
       lower="0"
       upper="0"
@@ -362,17 +351,17 @@
     name="front-right-axle">
     <inertial>
       <origin
-        xyz="-0.0310420706765801 8.32667268468867E-17 -0.0695904436550753"
+        xyz="0 5.55111512312578E-17 -0.0762"
         rpy="0 0 0" />
       <mass
         value="0.0772222198144586" />
       <inertia
-        ixx="0.000128288567441763"
-        ixy="3.72486511718043E-20"
-        ixz="-5.44474990578691E-05"
+        ixx="0.000152575854964957"
+        ixy="7.03302044017091E-22"
+        ixz="-2.70384489878801E-22"
         iyy="0.000152575854964957"
-        iyz="8.14822018357058E-20"
-        izz="3.05148734401304E-05" />
+        iyz="9.66801247676817E-20"
+        izz="6.22758591693701E-06" />
     </inertial>
     <visual>
       <origin
@@ -400,16 +389,16 @@
   </link>
   <joint
     name="fr-axle"
-    type="revolute">
+    type="fixed">
     <origin
-      xyz="-0.031042 0.06959 -0.2005"
-      rpy="1.5708 0 3.1416" />
+      xyz="0 0.0761999999999998 -0.2005"
+      rpy="1.5707963267949 0 3.14159265358979" />
     <parent
       link="front-right-hinge" />
     <child
       link="front-right-axle" />
     <axis
-      xyz="-0.40738 0 -0.91326" />
+      xyz="0.170506745557827 0 0.985356508944493" />
     <limit
       lower="0"
       upper="0"
@@ -420,15 +409,15 @@
     name="rear-left-wheel">
     <inertial>
       <origin
-        xyz="-2.22044604925031E-16 -2.77555756156289E-17 -0.0762"
+        xyz="-1.66533453693773E-16 -5.55111512312578E-17 -0.0762"
         rpy="0 0 0" />
       <mass
         value="2.43249992415545" />
       <inertia
         ixx="0.00755250482076536"
-        ixy="6.17126500150209E-19"
-        ixz="7.63769608539205E-20"
-        iyy="0.00755250482076537"
+        ixy="-8.23812994843201E-19"
+        ixz="-1.50602458021814E-19"
+        iyy="0.00755250482076536"
         iyz="2.88296133927474E-19"
         izz="0.0127509821649285" />
     </inertial>
@@ -458,9 +447,9 @@
   </link>
   <joint
     name="rl-wheel"
-    type="revolute">
+    type="continuous">
     <origin
-      xyz="-0.254 0.2159 0.1016"
+      xyz="-0.254 0.2159 -0.1397"
       rpy="1.5708 0 -3.1416" />
     <parent
       link="base_link" />
@@ -516,16 +505,16 @@
   </link>
   <joint
     name="rl-axle"
-    type="revolute">
+    type="fixed">
     <origin
-      xyz="-0.254 0.2159 0.1016"
+      xyz="-0.254 0.2159 -0.1397"
       rpy="1.5708 0 -3.1416" />
     <parent
       link="base_link" />
     <child
       link="rear-left-axle" />
     <axis
-      xyz="0 0 -1" />
+      xyz="0 0 0" />
     <limit
       lower="0"
       upper="0"
@@ -536,16 +525,16 @@
     name="rear-right-wheel">
     <inertial>
       <origin
-        xyz="-5.55111512312578E-17 2.77555756156289E-17 -0.0762"
+        xyz="5.55111512312578E-17 2.77555756156289E-17 -0.0762"
         rpy="0 0 0" />
       <mass
         value="2.43249992415545" />
       <inertia
         ixx="0.00755250482076537"
-        ixy="5.66507546524498E-20"
-        ixz="3.1159769861265E-19"
+        ixy="1.16151947225978E-18"
+        ixz="3.90126123152596E-19"
         iyy="0.00755250482076537"
-        iyz="5.69002767599304E-19"
+        iyz="7.17453761935092E-19"
         izz="0.0127509821649285" />
     </inertial>
     <visual>
@@ -574,9 +563,9 @@
   </link>
   <joint
     name="rr-wheel"
-    type="revolute">
+    type="continuous">
     <origin
-      xyz="-0.254 -0.2159 0.1016"
+      xyz="-0.254 -0.2159 -0.1397"
       rpy="1.5708 0 0" />
     <parent
       link="base_link" />
@@ -632,16 +621,16 @@
   </link>
   <joint
     name="rr-axle"
-    type="revolute">
+    type="fixed">
     <origin
-      xyz="-0.254 -0.2159 0.1016"
+      xyz="-0.254 -0.2159 -0.1397"
       rpy="1.5708 0 0" />
     <parent
       link="base_link" />
     <child
       link="rear-right-axle" />
     <axis
-      xyz="0 0 -1" />
+      xyz="0 0 0" />
     <limit
       lower="0"
       upper="0"
@@ -692,7 +681,7 @@
     name="l-sensor"
     type="fixed">
     <origin
-      xyz="0.45 0 0.4194"
+      xyz="0.45 0 0.1781"
       rpy="0 0 0" />
     <parent
       link="base_link" />
@@ -701,130 +690,65 @@
     <axis
       xyz="0 0 0" />
   </joint>
-  
- <ros2_control name="GazeboSystem" type="system">
-    <hardware>
-        <plugin>gazebo_ros2_control/GazeboSystem</plugin>
-    </hardware>
-  # Velocity Controllers
+     <ros2_control name="GazeboSystem" type="system">
+ <hardware>
+     <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+ </hardware>
+ # Velocity Controllers
 
-  <joint name="rr-wheel">
-      <command_interface name="velocity">
-          <param name="min">-1000.0</param>
-          <param name="max">1000.0</param>
-      </command_interface>
-      <state_interface name="position"/>
-      <state_interface name="velocity"/>
-  </joint>
-
-  <joint name="rl-wheel">
-      <command_interface name="velocity">
-          <param name="min">-1000.0</param>
-          <param name="max">1000.0</param>
-      </command_interface>
-      <state_interface name="position"/>
-      <state_interface name="velocity"/>
-  </joint>
-
-  <joint name="fl-wheel">
-      <command_interface name="velocity">
-          <param name="min">-1000.0</param>
-          <param name="max">1000.0</param>
-      </command_interface>
-      <state_interface name="position"/>
-      <state_interface name="velocity"/>
-  </joint>
-
+ <joint name="rr-wheel">
+     <command_interface name="velocity">
+         <param name="min">-1000.0</param>
+         <param name="max">1000.0</param>
+     </command_interface>
+     <state_interface name="position"/>
+     <state_interface name="velocity"/>
+ </joint>
+ <joint name="rl-wheel">
+     <command_interface name="velocity">
+         <param name="min">-1000.0</param>
+         <param name="max">1000.0</param>
+     </command_interface>
+     <state_interface name="position"/>
+     <state_interface name="velocity"/>
+ </joint>
   <joint name="fr-wheel">
-      <command_interface name="velocity">
-          <param name="min">-1000.0</param>
-          <param name="max">1000.0</param>
-      </command_interface>
-      <state_interface name="position"/>
-      <state_interface name="velocity"/>
-  </joint>
-
-  # Position Controller
-  <joint name="fl-axle">
-      <command_interface name="position">
-          <param name="min">-3.14</param>
-          <param name="max">3.14</param>
-      </command_interface>
-      <state_interface name="position"/>
-      <state_interface name="velocity"/>
-  </joint>
-
-  <joint name="fr-axle">
-      <command_interface name="position">
-          <param name="min">-3.14</param>
-          <param name="max">3.14</param>
-      </command_interface>
-      <state_interface name="position"/>
-      <state_interface name="velocity"/>
-  </joint>
-
-  </ros2_control>
-
-  <gazebo>
+     <command_interface name="velocity">
+         <param name="min">-1000.0</param>
+         <param name="max">1000.0</param>
+     </command_interface>
+     <state_interface name="position"/>
+     <state_interface name="velocity"/>
+ </joint>
+  <joint name="fl-wheel">
+     <command_interface name="velocity">
+         <param name="min">-1000.0</param>
+         <param name="max">1000.0</param>
+     </command_interface>
+     <state_interface name="position"/>
+     <state_interface name="velocity"/>
+ </joint>
+# Position Controller
+ <joint name="fl-axle">
+     <command_interface name="position">
+         <param name="min">-3.14</param>
+         <param name="max">3.14</param>
+     </command_interface>
+     <state_interface name="position"/>
+     <state_interface name="velocity"/>
+ </joint>
+ <joint name="fr-axle">
+     <command_interface name="position">
+         <param name="min">-3.14</param>
+         <param name="max">3.14</param>
+     </command_interface>
+     <state_interface name="position"/>
+     <state_interface name="velocity"/>
+ </joint>
+ </ros2_control>
+<gazebo>
     <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
         <parameters>$(find car_robot)/config/control.yaml</parameters>
     </plugin>
-  </gazebo>
-  
- <gazebo reference="Lidar">
-  <sensor name="lidar" type="ray">
-    <pose>0.0 0.0 0.0 0 0 0</pose>
-    <always_on>true</always_on>
-    <visualize>true</visualize>
-    <update_rate>5</update_rate>
-    <ray>
-      <scan>
-        <horizontal>
-          <samples>360</samples>
-          <resolution>1.00000</resolution>
-          <min_angle>0.000000</min_angle>
-          <max_angle>6.280000</max_angle>
-        </horizontal>
-      </scan>
-      <range>
-        <min>0.120000</min>
-        <max>3.5</max>
-        <resolution>0.015000</resolution>
-      </range>
-      <noise>
-        <type>gaussian</type>
-        <mean>0.0</mean>
-        <stddev>0.01</stddev>
-      </noise>
-    </ray>
-    <plugin name="scan" filename="libgazebo_ros_ray_sensor.so">
-      <ros>
-        <remapping>~/out:=scan</remapping>
-      </ros>
-      <output_type>sensor_msgs/LaserScan</output_type>
-      <frame_name>Lidar</frame_name>
-    </plugin>
-  </sensor>
-  </gazebo>
-  
-  <gazebo reference="base_link">
-  <gravity>true</gravity>
-  <sensor name="imu_sensor" type="imu">
-    <always_on>true</always_on>
-    <update_rate>100</update_rate>
-    <visualize>true</visualize>
-    <topic>__default_topic__</topic>
-    <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
-      <topicName>imu</topicName>
-      <bodyName>name_of_the_base_link</bodyName>
-      <updateRateHZ>10.0</updateRateHZ>
-      <gaussianNoise>0.0</gaussianNoise>
-      <xyzOffset>0 0 0</xyzOffset>
-      <rpyOffset>0 0 0</rpyOffset>
-      <frameName>base_link</frameName>
-      <initialOrientationAsReference>false</initialOrientationAsReference>
-    </plugin>
-    <pose>0 0 0 0 0 0</pose>
-  </sensor>
-</gazebo>
+</gazebo> 
 </robot>

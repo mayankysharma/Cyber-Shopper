@@ -33,8 +33,8 @@ velocity_controller:
         joints:
         - rr-wheel
         - rl-wheel
-        #- fr-wheel
-        #- fl-wheel
+        - fr-wheel
+        - fl-wheel
         interface_name: velocity
         command_interfaces:
         - velocity
