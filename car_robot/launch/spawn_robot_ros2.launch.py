@@ -21,21 +21,18 @@ def generate_launch_description():
 
     package_description = "car_robot"
 
-    # Position and orientation
+   # Competition Launch
     # [X, Y, Z]
-    #position = [0.0, 0.0, 0.5]
-    #position = [5.0, 5.0, 1.0]
+    position = [1.0, -2.5, 1.0]
     # [Roll, Pitch, Yaw]
-    #orientation = [0.0, 0.0, 0.0]
-     # # Competition Launch
-    # # [X, Y, Z]
+    orientation = [0.0, 0.0, 1.571]
+
+    # Controller Launch
+    # [X, Y, Z]
     # position = [0.0, 0.0, 0.4]
-    # # # [Roll, Pitch, Yaw]
+    # # [Roll, Pitch, Yaw]
     # orientation = [0.0, 0.0, 0.0]
-    # [X, Y, Z]
-    position = [5.0, 5.0, 1.0]
-    # [Roll, Pitch, Yaw]
-    orientation = [0.0, 0.0, 0.0]
+
     # Base Name or robot
     robot_base_name = "car_robot"
     ####### DATA INPUT END ##########

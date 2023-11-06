@@ -22,6 +22,7 @@ def generate_launch_description():
         get_package_share_directory('car_robot'),
         'worlds',
         'empty_world.world'
+        
     )
 
     # Launch Description to run Gazebo Server

@@ -9,6 +9,7 @@ import sys
 import select
 import tty
 import termios
+#from pynput import keyboard
 
 # Define key codes
 LIN_VEL_STEP_SIZE = 1
@@ -69,9 +70,9 @@ class KeyboardControlNode(Node):
                 elif key == 's':  # Reverse
                     linear_vel -= LIN_VEL_STEP_SIZE
                 elif key == 'd':  # Right
-                    steer_angle -= ANG_VEL_STEP_SIZE
-                elif key == 'a':  # Left
                     steer_angle += ANG_VEL_STEP_SIZE
+                elif key == 'a':  # Left
+                    steer_angle -= ANG_VEL_STEP_SIZE
 
 
                 if steer_angle>1.0:
@@ -82,8 +83,8 @@ class KeyboardControlNode(Node):
                 print("Steer Angle",steer_angle)
                 print("Linear Velocity",linear_vel)
                 # Publish the twist message
-                wheel_velocities.data = [linear_vel,-linear_vel,linear_vel,-linear_vel]
-                joint_positions.data = [steer_angle,steer_angle,0.0,0.0]
+                wheel_velocities.data = [linear_vel,-linear_vel, linear_vel,-linear_vel]
+                joint_positions.data = [steer_angle,steer_angle]
 
                 self.joint_position_pub.publish(joint_positions)
                 self.wheel_velocities_pub.publish(wheel_velocities)
