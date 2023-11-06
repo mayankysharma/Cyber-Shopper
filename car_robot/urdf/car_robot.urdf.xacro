@@ -7,37 +7,128 @@
   <xacro:macro name="body_color">
     <visual>
     <material>
-        <ambient>0.05375 0.05 0.06625 0.82</ambient>
-        <diffuse>0.18275 0.17 0.22525 0.82</diffuse>
-        <specular>0.332741 0.328634 0.346435 0.82</specular>
+        <ambient>0.5 0.5 0.5 1.0</ambient>
+        <diffuse>0.5 0.5 0.5 1.0</diffuse>
+        <specular>0.7 0.7 0.7 1.0</specular>
+        <emissive>0 0 0 1.0</emissive>
+    </material>
+    </visual>
+  </xacro:macro>
+<gazebo reference="base_link">
+    <xacro:body_color />
+</gazebo>
+  <xacro:macro name="fr_wheel_color">
+    <visual>
+    <material>
+        <ambient>0 0 0 1.0</ambient>
+        <diffuse>0 0 0 1.0</diffuse>
+        <specular>0 0 0 1.0</specular>
+        <emissive>0 0 0 1.0</emissive>
+    </material>
+    </visual>
+  </xacro:macro>
+<gazebo reference="front-right-wheel">
+    <xacro:fr_wheel_color/>
+</gazebo>
+<xacro:macro name="fl_wheel_color">
+    <visual>
+    <material>
+        <ambient>0 0 0 1.0</ambient>
+        <diffuse>0 0 0 1.0</diffuse>
+        <specular>0 0 0 1.0</specular>
+        <emissive>0 0 0 1.0</emissive>
+    </material>
+    </visual>
+  </xacro:macro>
+<gazebo reference="front-left-wheel">
+    <xacro:fl_wheel_color/>
+</gazebo>
+<xacro:macro name="rr_wheel_color">
+    <visual>
+    <material>
+        <ambient>0 0 0 1.0</ambient>
+        <diffuse>0 0 0 1.0</diffuse>
+        <specular>0 0 0 1.0</specular>
+        <emissive>0 0 0 1.0</emissive>
+    </material>
+    </visual>
+  </xacro:macro>
+<gazebo reference="rear-right-wheel">
+    <xacro:rr_wheel_color/>
+</gazebo>
+<xacro:macro name="rl_wheel_color">
+    <visual>
+    <material>
+        <ambient>0 0 0 1.0</ambient>
+        <diffuse>0 0 0 1.0</diffuse>
+        <specular>0 0 0 1.0</specular>
+        <emissive>0 0 0 1.0</emissive>
+    </material>
+    </visual>
+  </xacro:macro>
+<gazebo reference="rear-left-wheel">
+    <xacro:rl_wheel_color/>
+</gazebo>
+<xacro:macro name="Lidar">
+<visual>
+    <material>
+        <ambient>0 0 0 1.0</ambient>
+        <diffuse>0 0 0 1.0</diffuse>
+        <specular>0 0 0 1.0</specular>
+        <emissive>0 0 0 1.0</emissive>
+    </material>
+    </visual>
+  </xacro:macro>
+<gazebo reference="Lidar">
+    <xacro:Lidar/>
+</gazebo>
+  <xacro:macro name="righthinge">
+    <visual>
+    <material>
+        <ambient>0.8 0.558823529411765 0.1 1</ambient>
+        <diffuse>0.8 0.558823529411765 0.1 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
         <emissive>0 0 0 0</emissive>
     </material>
     </visual>
 </xacro:macro>
-<gazebo reference="base_link">
-    <xacro:body_color />
+<gazebo reference="front-right-hinge">
+    <xacro:righthinge />
 </gazebo>
-  # Add this before base link
+  <xacro:macro name="left-hinge">
+    <visual>
+    <material>
+        <ambient>0.8 0.558823529411765 0.1 1</ambient>
+        <diffuse>0.8 0.558823529411765 0.1 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+        <emissive>0 0 0 0</emissive>
+    </material>
+    </visual>
+</xacro:macro>
+<gazebo reference="front-left-hinge">
+    <xacro:left-hinge />
+</gazebo>
+
+
+# Add this before base link
 <link name="dummy_link"></link>
 
 
-  
-  
   <link
     name="base_link">
     <inertial>
       <origin
-        xyz="-0.00677096096599193 -7.40324228051496E-09 0.0650709573527417"
+        xyz="-0.00590761615173888 8.73355505905299E-10 0.0651857188195396"
         rpy="0 0 0" />
       <mass
-        value="40.1297473551325" />
+        value="40.2057306762447" />
       <inertia
-        ixx="1.26922453974044"
-        ixy="1.04912166627371E-07"
-        ixz="-0.0347492884684778"
-        iyy="3.34453299992272"
-        iyz="1.64404574516637E-08"
-        izz="4.11157029873108" />
+        ixx="1.26964977918221"
+        ixy="-1.56502914706543E-08"
+        ixz="-0.0368531498128534"
+        iyy="3.36078463885119"
+        iyz="1.85572003306758E-12"
+        izz="4.12740286196387" />
     </inertial>
     <visual>
       <origin
@@ -73,16 +164,16 @@
     name="front-left-hinge">
     <inertial>
       <origin
-        xyz="0 0 -0.118799628145585"
+        xyz="5.55111512312578E-17 2.77555756156289E-17 -0.118799628145585"
         rpy="0 0 0" />
       <mass
-        value="0.633612488698205" />
+        value="0.633612488698204" />
       <inertia
         ixx="0.00421598497152854"
         ixy="2.499711540899E-05"
-        ixz="-1.35033902121542E-18"
+        ixz="1.39648971177733E-18"
         iyy="0.00246011467135765"
-        iyz="2.20234865744933E-19"
+        iyz="-2.46632049893864E-19"
         izz="0.00202629416547586" />
     </inertial>
     <visual>
@@ -114,7 +205,7 @@
     type="revolute">
     <origin
       xyz="0.254 0.1397 0.0608"
-      rpy="0 0 -3.1416" />
+      rpy="0 0 0" />
     <parent
       link="base_link" />
     <child
@@ -122,16 +213,16 @@
     <axis
       xyz="0 0 -1" />
     <limit
-      lower="-3.14"
-      upper="3.14"
-      effort="100"
-      velocity="100" />
+      lower="-1"
+      upper="1"
+      effort="0"
+      velocity="0" />
   </joint>
   <link
-    name="front-left-wheeel">
+    name="front-left-wheel">
     <inertial>
       <origin
-        xyz="0.00108447726862249 1.11022302462516E-16 0.0761922824769925"
+        xyz="-0.000542238634311243 -2.77555756156289E-17 -0.0380961412384963"
         rpy="0 0 0" />
       <mass
         value="2.43249992415545" />
@@ -149,7 +240,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://car_robot/meshes/front-left-wheeel.STL" />
+          filename="package://car_robot/meshes/front-left-wheel.STL" />
       </geometry>
       <material
         name="">
@@ -163,7 +254,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://car_robot/meshes/front-left-wheeel.STL" />
+          filename="package://car_robot/meshes/front-left-wheel.STL" />
       </geometry>
     </collision>
   </link>
@@ -171,34 +262,29 @@
     name="fl-wheel"
     type="continuous">
     <origin
-      xyz="-0.00108447726862265 0.0761922824769925 -0.2005"
-      rpy="1.5707963267949 0 0" />
+      xyz="-0.000542238634311021 0.0380961412384964 -0.2005"
+      rpy="1.5707963267949 0 -3.14159265358979" />
     <parent
       link="front-left-hinge" />
     <child
-      link="front-left-wheeel" />
+      link="front-left-wheel" />
     <axis
       xyz="-0.0142319851525261 0 -0.999898720170507" />
-    <limit
-      lower="0"
-      upper="0"
-      effort="0"
-      velocity="0" />
   </joint>
   <link
     name="front-right-hinge">
     <inertial>
       <origin
-        xyz="-5.55111512312578E-17 -5.55111512312578E-17 -0.118799628145585"
+        xyz="-5.55111512312578E-17 0 -0.118799628145585"
         rpy="0 0 0" />
       <mass
         value="0.633612488698205" />
       <inertia
         ixx="0.00421634076613872"
-        ixy="3.80852095203232E-19"
-        ixz="1.69567032741007E-18"
+        ixy="3.80852095203233E-19"
+        ixz="-2.1435307693139E-21"
         iyy="0.00245975887674748"
-        iyz="9.55878885787063E-19"
+        iyz="-1.06880068014722E-18"
         izz="0.00202629416547586" />
     </inertial>
     <visual>
@@ -230,7 +316,7 @@
     type="revolute">
     <origin
       xyz="0.254 -0.1397 0.0608"
-      rpy="0 0 -3.1416" />
+      rpy="0 0 0" />
     <parent
       link="base_link" />
     <child
@@ -238,16 +324,16 @@
     <axis
       xyz="0 0 -1" />
     <limit
-      lower="-3.14"
-      upper="3.14"
-      effort="100"
-      velocity="100" />
+      lower="-1"
+      upper="1"
+      effort="0"
+      velocity="0" />
   </joint>
   <link
     name="front-right-wheel">
     <inertial>
       <origin
-        xyz="-5.55111512312578E-17 0 -0.0762"
+        xyz="-5.55111512312578E-17 2.77555756156289E-17 -0.0381"
         rpy="0 0 0" />
       <mass
         value="2.43249992415545" />
@@ -287,136 +373,20 @@
     name="fr-wheel"
     type="continuous">
     <origin
-      xyz="0 0.0761999999999999 -0.2005"
-      rpy="1.5707963267949 0 3.14159265358979" />
+      xyz="0 -0.0381 -0.2005"
+      rpy="1.5707963267949 0 0" />
     <parent
       link="front-right-hinge" />
     <child
       link="front-right-wheel" />
     <axis
       xyz="0 0 -1" />
-    <limit
-      lower="0"
-      upper="0"
-      effort="0"
-      velocity="0" />
-  </joint>
-  <link
-    name="Lidar">
-    <inertial>
-      <origin
-        xyz="0 -1.02751096627556E-17 -0.08905"
-        rpy="0 0 0" />
-      <mass
-        value="0.0902446020272643" />
-      <inertia
-        ixx="0.000242182519707747"
-        ixy="9.5944127796284E-22"
-        ixz="-6.99487317772809E-21"
-        iyy="0.000242182519707747"
-        iyz="-2.72604477775199E-20"
-        izz="7.27777593048873E-06" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://car_robot/meshes/Lidar.STL" />
-      </geometry>
-      <material
-        name="">
-        <color
-          rgba="0 0 0 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://car_robot/meshes/Lidar.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint
-    name="l-sensor"
-    type="fixed">
-    <origin
-      xyz="0.45 0 0.1781"
-      rpy="0 0 0" />
-    <parent
-      link="base_link" />
-    <child
-      link="Lidar" />
-    <axis
-      xyz="0 0 0" />
-  </joint>
-  <link
-    name="rear-right-wheel">
-    <inertial>
-      <origin
-        xyz="5.55111512312578E-17 2.77555756156289E-17 -0.0762"
-        rpy="0 0 0" />
-      <mass
-        value="2.43249992415545" />
-      <inertia
-        ixx="0.00755250482076537"
-        ixy="1.16151947225978E-18"
-        ixz="3.90126123152596E-19"
-        iyy="0.00755250482076537"
-        iyz="7.17453761935092E-19"
-        izz="0.0127509821649285" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://car_robot/meshes/rear-right-wheel.STL" />
-      </geometry>
-      <material
-        name="">
-        <color
-          rgba="0 0 0 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://car_robot/meshes/rear-right-wheel.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint
-    name="rr-wheel"
-    type="continuous">
-    <origin
-      xyz="-0.254 -0.2159 -0.1397"
-      rpy="1.5708 0 0" />
-    <parent
-      link="base_link" />
-    <child
-      link="rear-right-wheel" />
-    <axis
-      xyz="0 0 -1" />
-    <limit
-      lower="0"
-      upper="0"
-      effort="0"
-      velocity="0" />
   </joint>
   <link
     name="rear-left-wheel">
     <inertial>
       <origin
-        xyz="-1.66533453693773E-16 -5.55111512312578E-17 -0.0762"
+        xyz="0 0 -0.0381"
         rpy="0 0 0" />
       <mass
         value="2.43249992415545" />
@@ -456,19 +426,120 @@
     name="rl-wheel"
     type="continuous">
     <origin
-      xyz="-0.254 0.2159 -0.1397"
-      rpy="1.5707963267949 0 -3.14159265358979" />
+      xyz="-0.254 0.1778 -0.1397"
+      rpy="1.5708 0 3.1416" />
     <parent
       link="base_link" />
     <child
       link="rear-left-wheel" />
     <axis
       xyz="0 0 -1" />
-    <limit
-      lower="0"
-      upper="0"
-      effort="0"
-      velocity="0" />
+  </joint>
+  <link
+    name="rear-right-wheel">
+    <inertial>
+      <origin
+        xyz="0 0 -0.0381"
+        rpy="0 0 0" />
+      <mass
+        value="2.43249992415545" />
+      <inertia
+        ixx="0.00755250482076537"
+        ixy="1.16151947225978E-18"
+        ixz="3.90126123152596E-19"
+        iyy="0.00755250482076537"
+        iyz="7.17453761935092E-19"
+        izz="0.0127509821649285" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://car_robot/meshes/rear-right-wheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://car_robot/meshes/rear-right-wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rr-wheel"
+    type="continuous">
+    <origin
+      xyz="-0.254 -0.1778 -0.1397"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="rear-right-wheel" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="Lidar">
+    <inertial>
+      <origin
+        xyz="5.55111512312578E-17 -1.60727870924178E-18 -0.0127"
+        rpy="0 0 0" />
+      <mass
+        value="0.0128703699690764" />
+      <inertia
+        ixx="1.21091948384887E-06"
+        ixy="-5.87747175411144E-39"
+        ixz="4.01153705072005E-39"
+        iyy="1.21091948384887E-06"
+        iyz="-7.78263594347942E-38"
+        izz="1.03793098615617E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://car_robot/meshes/Lidar.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://car_robot/meshes/Lidar.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="laser"
+    type="fixed">
+    <origin
+      xyz="0.45 0 0.2262"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="Lidar" />
+    <axis
+      xyz="0 0 0" />
   </joint>
      <ros2_control name="GazeboSystem" type="system">
  <hardware>
@@ -531,7 +602,6 @@
         <parameters>$(find car_robot)/config/control.yaml</parameters>
     </plugin>
 </gazebo> 
-
 <gazebo reference="Lidar">
   <sensor name="lidar" type="ray">
     <pose>0.0 0.0 0.0 0 0 0</pose>
@@ -567,7 +637,7 @@
     </plugin>
   </sensor>
   </gazebo>
-
+  #IMU
   <gazebo reference="base_link">
   <gravity>true</gravity>
   <sensor name="imu_sensor" type="imu">
