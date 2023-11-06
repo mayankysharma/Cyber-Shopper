@@ -1,1 +1,51 @@
-# ENPM662-Project1
+# ENPM 662: Project 1
+
+## Project title: CAD Modelling & Simulation using Gazebo
+
+### Dependencies:
+* ROS Controller package and controller manager
+```bash
+sudo apt install ros-galactic-ros2-control ros-galactic-ros2-controllers ros-galactic-gazebo-ros2-control
+sudo apt-get install ros-galactic-controller-manager
+```
+
+### Steps to execute the project:
+* Create a ROS2 workspace.
+
+* Unzip file under your src folder in the workspace.
+
+* Source your bashrc and ROS2 version, build your package, and Source your workspace. 
+```bash
+source /opt/ros/"ROS2_DISTRO"/setup.bash
+colcon build
+source "WS_DIRECTORY"/install/setup.bash
+```
+
+- To spawn the model in empty world for teleop:
+```bash 
+source "WS_DIRECTORY"/install/setup.bash
+ros2 launch car_robot gazebo.launch.py
+```
+Then open second terminal:-
+```bash
+source WS_DIRECTORY/install/setup.bash
+ros2 run car_robot teleop.py
+```
+
+* To spawn the model in competition world for teleop:
+```bash
+source WS_DIRECTORY/install/setup.bash
+ros2 launch car_robot competition.launch.py
+
+```
+Open second terminal:-
+```source "WS_DIRECTORY"/install/setup.bash
+ros2 run car_robot teleop.py
+```
+
+* To run the proportional controller make sure the position and orientation values in `spawn_robot_ros2.launch.py` are 0. For running the proportional controller:
+```bash 
+source WS_DIRECTORY/install/setup.bash
+ros2 launch car_robot gazebo.launch.py
+ros2 run car_robot proportional_controller.py
+```
