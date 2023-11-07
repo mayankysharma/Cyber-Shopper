@@ -2,9 +2,10 @@
 
 ## Project title: CAD Modelling & Simulation using Gazebo
 ### Robot Image:
+
 <p align="center">
 
-<img  alt="outpainted"  src="car_robot/Images/car_robot.png"  width="50%" />
+<img  alt="outpainted"  src="car_robot/Images/car_robot.png"  width="70%" />
 
 </p>
 
