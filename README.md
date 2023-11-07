@@ -1,7 +1,12 @@
 # ENPM 662: Project 1
 
 ## Project title: CAD Modelling & Simulation using Gazebo
+### Robot Image:
+<p align="center">
 
+<img  alt="outpainted"  src="car_robot/Images/car_robot.png"  width="50%" />
+
+</p>
 ### Dependencies:
 * ROS Controller package and controller manager
 ```bash
