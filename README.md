@@ -63,4 +63,4 @@ ros2 run car_robot proportional_controller.py
 ```
 ### Results:
 - [Teleop](https://drive.google.com/file/d/1xQ3izmXtTUS3wwKu2IvfoMDJHHOfLkgd/view?usp=drive_link) 
-- [Porportional Controller](https://drive.google.com/file/d/1H158rpDP9aivAv4KUmNPMN3PQegJCEjk/view?usp=drive_link) 
+- [Porportional Controller](https://drive.google.com/file/d/1BP5SyhMt2736mu-GqzJc1gzScRwpLrSq/view?usp=drive_link) 
