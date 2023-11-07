@@ -7,6 +7,7 @@
 <img  alt="outpainted"  src="car_robot/Images/car_robot.png"  width="50%" />
 
 </p>
+
 ### Dependencies:
 * ROS Controller package and controller manager
 ```bash
@@ -17,10 +18,15 @@ sudo apt-get install ros-galactic-controller-manager
 ### Steps to execute the project:
 * Create a ROS2 workspace.
 
-* Unzip file under your src folder in the workspace.
+* git clone the package in your ros2 workspace.:
+```
+cd ros2_ws/src
+git clone "link to repository"
+```
 
 * Source your bashrc and ROS2 version, build your package, and Source your workspace. 
 ```bash
+cd ros2_ws/
 source /opt/ros/"ROS2_DISTRO"/setup.bash
 colcon build
 source "WS_DIRECTORY"/install/setup.bash
