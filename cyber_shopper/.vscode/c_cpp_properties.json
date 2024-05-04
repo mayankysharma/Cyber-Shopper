@@ -1,0 +1,26 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/mayank/testWS/install/cyber_shopper/include/**",
+        "/home/mayank/testWS/install/car_ur/include/**",
+        "/home/mayank/testWS/install/car_robot/include/**",
+        "/opt/ros/galactic/include/**",
+        "/home/mayank/testWS/src/car_robot/include/**",
+        "/home/mayank/testWS/src/car_ur/include/**",
+        "/home/mayank/testWS/src/cyber_shopper/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}
